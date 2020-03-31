@@ -12,7 +12,7 @@ public class Node {
 		// TODO Auto-generated constructor stub
 	}
 	public void setGrid() {
-		System.out.println();
+		System.out.println("hi");
 	}
 	
 
