@@ -8,8 +8,6 @@ public class Node {
 	private int misplacedTiles;
 	
 	//---------------------------------------
-
-	
 	
 	public Node() {
 		// TODO Auto-generated constructor stub
@@ -51,15 +49,15 @@ public class Node {
 		}
 		System.out.println();
 	}
-	
+
+	//---------------------------------------------BEGIN: BLANK TILE MOVEMENT----------------------------------
 	public void moveBlankUp() {
 		if (row > 0) {
 			grid[row][col] = grid[--row][col];
 			grid[row][col] = 0;
 		}
-		else {
+		else
 			System.out.println("----------------------ERROR: CAN'T MOVE BLANK SPACE UP----------------------");
-		}
 	}
 	
 	public void moveBlankDown() {
@@ -67,9 +65,8 @@ public class Node {
 			grid[row][col] = grid[++row][col];
 			grid[row][col] = 0;
 		}
-		else {
+		else
 			System.out.println("----------------------ERROR: CAN'T MOVE BLANK SPACE DOWN----------------------");
-		}
 	}
 
 	public void moveBlankRight() {
@@ -77,9 +74,8 @@ public class Node {
 			grid[row][col] = grid[row][++col];
 			grid[row][col] = 0;
 		}
-		else {
+		else 
 			System.out.println("----------------------ERROR: CAN'T MOVE BLANK SPACE RIGHT----------------------");
-		}
 	}	
 	
 	public void moveBlankLeft() {
@@ -87,12 +83,10 @@ public class Node {
 			grid[row][col] = grid[row][--col];
 			grid[row][col] = 0;
 		}
-		else {
+		else
 			System.out.println("----------------------ERROR: CAN'T MOVE BLANK SPACE LEFT----------------------");
-		}
 	}
+	//---------------------------------------------END: BLANK TILE MOVEMENT----------------------------------
 	
-	public void printTest() {
-		System.out.println("Hello");
-	}
+	
 }
