@@ -6,14 +6,17 @@ public class Node {
 	private int[][] grid;
 	private int level;
 	private int misplacedTiles;
+	private int[][] LastState; //This would be used to check and make sure that the current node doesn't move back to it's previous state
 	
 	//---------------------------------------
 	
-	public Node() {
+	public Node(int[][] matrix) {
 		// TODO Auto-generated constructor stub
 		grid = new int[3][3];
-		setGrid();
+		LastState = new int[3][3];
+		setGrid(matrix);
 		setRowCol();
+<<<<<<< HEAD
 	}
 	//-----------------------------SETTERS AND GETTERS-----------------------------
 	public void setGrid() {
@@ -24,9 +27,20 @@ public class Node {
 				num--;
 			}
 		}
+=======
+		misplacedTiles = 0;
+>>>>>>> branch 'master' of git@github.com:AI-479-Team/8-TilePuzzle.git
 	}
 	
-	public void setRowCol() {
+	public void setLastState(int[][] matrix) {
+		LastState = matrix;
+	}
+	
+	public void setGrid(int[][] matrix) {
+		grid = matrix;
+	}
+	
+	public void setRowCol(){
 		outerloop:
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
@@ -50,8 +64,27 @@ public class Node {
 		}
 		System.out.println();
 	}
+<<<<<<< HEAD
 	
 	
+=======
+	public void calculateMisplacedTiles(int[][] GoalState) {
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j ++) {
+				if ((GoalState[i][j] != 0) && (GoalState[i][j] != grid[i][j]))
+					misplacedTiles++;
+			}
+		}
+	}
+	
+	public int getMisplacedTiles() {
+		return misplacedTiles;
+	}
+	
+	public int[][] getGrid() {
+		return grid;
+	}
+>>>>>>> branch 'master' of git@github.com:AI-479-Team/8-TilePuzzle.git
 
 	//---------------------------------------------BEGIN: BLANK TILE MOVEMENT----------------------------------
 	public void moveBlankUp() {
@@ -90,6 +123,45 @@ public class Node {
 			System.out.println("----------------------ERROR: CAN'T MOVE BLANK SPACE LEFT----------------------");
 	}
 	//---------------------------------------------END: BLANK TILE MOVEMENT----------------------------------
+	public int checkBlankUp() {
+		if (row > 0) {
+			return 1;
+		}
+		else {
+			System.out.println("----------------------ERROR: CAN'T MOVE BLANK SPACE UP----------------------");
+			return 0;
+		}
+	}
+	
+	public int checkBlankDown() {
+		if (row < 2) {
+			return 1;
+		}
+		else {
+			System.out.println("----------------------ERROR: CAN'T MOVE BLANK SPACE DOWN----------------------");
+			return 0;
+		}
+	}
+
+	public int checkBlankRight() {
+		if (col < 2) {
+			return 1;
+		}
+		else {
+			System.out.println("----------------------ERROR: CAN'T MOVE BLANK SPACE RIGHT----------------------");
+			return 0;
+		}
+	}	
+	
+	public int checkBlankLeft() {
+		if (col > 0) {
+			return 1;
+		}
+		else {
+			System.out.println("----------------------ERROR: CAN'T MOVE BLANK SPACE LEFT----------------------");
+			return 0;
+		}
+	}
 	
 	
 }
