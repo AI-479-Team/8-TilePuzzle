@@ -15,6 +15,7 @@ public class Node {
 		setGrid();
 		setRowCol();
 	}
+	//-----------------------------SETTERS AND GETTERS-----------------------------
 	public void setGrid() {
 		int num = 8;	// 0 will be the blank tile
 		for (int i = 0; i < 3; i++) {
@@ -49,6 +50,8 @@ public class Node {
 		}
 		System.out.println();
 	}
+	
+	
 
 	//---------------------------------------------BEGIN: BLANK TILE MOVEMENT----------------------------------
 	public void moveBlankUp() {
