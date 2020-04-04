@@ -61,7 +61,7 @@ public class TestRun {
 				}
 			}
 			else {
-				if (NextStates.get(i).getMisplacedTilesCost(GoalState) < min) {
+				if (NextStates.get(i).getManhattanCost(GoalState) < min) {
 					min = NextStates.get(i).getManhattanCost(GoalState);
 					minIndex = i;
 				}
@@ -206,6 +206,7 @@ public class TestRun {
 				else {
 					CurrentState.printGrid();
 					printMoves(CurrentState);
+					System.out.println("Number of nodes Explored: " + ExploredStates.size());
 					break;
 				}
 				
