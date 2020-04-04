@@ -6,7 +6,6 @@ public class Node {
 	private int row, col;
 	private int level;
 	private int misplacedTiles;
-	//private int[][] LastState; //This would be used to check and make sure that the current node doesn't move back to it's previous state
 	private String fromDirection;	// This is the direction that was used to get to this Node.
 	private Node prevNode;		// the Node this Node came from
 	
@@ -96,11 +95,37 @@ public class Node {
 		return prevNode;
 	}
 	
-	public int getManhattanCost() {
-		
-		return 1;
+	public int getCost(String heuristic, int[][] GoalState) {
+		if (heuristic.equalsIgnoreCase("a"))
+			return getMisplacedTilesCost(GoalState);
+		else if (heuristic.equalsIgnoreCase("a"))
+			return getManhattanCost(GoalState);
+		return -1;
 	}
-	public int getMisplacedTilesCost() {
+	public int getManhattanCost(int[][] GoalState) {
+		int mCost = 0;
+		int x1, x2, y1, y2;
+		x1 = x2 = y1 = y2 = 0;
+		
+		for (int i = 1; i < 9; i++) {
+			for (int j = 0; j < 3; j++) {
+				for (int k = 0; k < 3; k++) {
+					if(grid[j][k] == i) {
+						x1 = k;
+						y1 = j;
+					}
+					if(GoalState[j][k] == i) {
+						x2 = k;
+						y2 = j;
+					}
+				}
+			}
+			mCost += (Math.abs(x1-x2)+Math.abs(y1-y2));//finds heuristic value of 2d array
+		}
+		return (mCost + level);
+	}
+	public int getMisplacedTilesCost(int[][] GoalState) {
+		calculateMisplacedTiles(GoalState);
 		return level + misplacedTiles;
 	}
 	//---------------------------------------------END: GETTERS/SETTERS----------------------------------
